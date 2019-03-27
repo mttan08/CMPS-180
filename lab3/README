@@ -1,0 +1,17 @@
+// Matthew Tan
+// mxtan
+// CMPS 180
+
+1) lab3_create.sql -- file provided
+2) lab3_data_loading.sql -- file provided
+3) combine.sql -- combine Customers and NewCustomers
+   relational schemas
+4) foreign.sql -- add foreign key constraints
+5) unittests.sql -- unit tests to check if key constriants
+   are working or not; NOTE: to do the unit tests, please
+   uncomment out the failure cases to test each case
+6) queryview.sql -- creates a view called QuotesSummary
+   that contains information such as opening prie and
+   closing, low, and high price of all the stocks
+7) createindex.sql -- creates an index for Trades schema
+8) README -- description of all the files
