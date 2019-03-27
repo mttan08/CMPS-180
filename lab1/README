@@ -1,0 +1,9 @@
+// Matthew Tan
+// mxtan
+// CMPS 180
+// lab1
+
+1) create.sql -- Creates a database that contains information
+   about customers, exchanges, quotes, stocks, and trades
+   for a simple stock market.
+2) README
