@@ -1,0 +1,15 @@
+// Matthew Tan
+// mxtan
+// CMPS 180
+// lab2
+
+1) create.sql -- Creates a database that contains information
+   about customers, exchanges, quotes, stocks, and trades
+   for a simple stock market.
+2) query1.sql -- finds customers with 'FAKE' name in them
+3) query2.sql -- finds stocks that are not in 'NASDAQ Stock Exchange'
+4) query3.sql -- finds stocks of prices less than 314.15
+5) query4.sql -- finds trades such that cost >= 5000
+   and buyer is a valid customer and category is not null
+6) query5.sql -- find trades that occured before '2018-01-01 12:00:00'
+7) README
