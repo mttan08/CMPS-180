@@ -1,0 +1,50 @@
+-- rewardBuyersFunction.pgsql
+
+CREATE FUNCTION rewardBuyersFunction(INTEGER, INTEGER, INTEGER) 
+   RETURNS INTEGER AS $$
+DECLARE returnVal ALIAS FOR $1;
+DECLARE theSellerID ALIAS FOR $2;
+DECLARE theCount ALIAS FOR $3;
+DECLARE seller_ID INT := 1456;
+DECLARE buyer_ID INT;
+DECLARE counter INTEGER := 0;
+DECLARE temp INTEGER := 0;
+DECLARE count2 INTEGER := 0;
+DECLARE the_Count INTEGER := 1;
+DECLARE cat VARCHAR(1);
+DECLARE inc INTEGER := 0;
+DECLARE c CURSOR FOR
+SELECT buyerID, sellerID, SUM(price*volume) AS totalCost
+FROM Trades
+WHERE sellerID = theSellerID
+GROUP BY buyerID, sellerID
+ORDER BY sum(price*volume) DESC
+LIMIT theCount;
+
+BEGIN
+    OPEN c;
+    LOOP
+    EXIT WHEN counter = 9;
+        FETCH c INTO buyer_ID, seller_ID;
+        returnVal = buyer_ID;
+        IF seller_ID = theSellerID AND count2 < 3 THEN
+          SELECT category INTO cat FROM Customers WHERE customerID = buyer_ID;
+          IF cat = 'H' THEN
+            SET inc = 50;
+          ELSEIF cat = 'M' THEN
+            SET inc = 20;
+          ELSEIF cat = 'L' THEN
+            SET inc = 5;
+          ELSE
+            SET inc = 1;
+          END IF;
+            UPDATE Trades SET volume = volume + inc
+            WHERE sellerID = theSellerID AND buyerID = buyer_ID;
+          count2 := count2 + 1;
+        END IF;
+        counter := counter + 1;
+    END LOOP;
+    CLOSE c;
+RETURN seller_ID;
+END;
+$$ LANGUAGE plpgsql;
